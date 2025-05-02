@@ -2,12 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Book Finder</title>
+    <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="app"></div>
+    <header>
+      <h1>
+        Book Finder
+      </h1>
+      <p>Search your favourite books by title, author, or ISBN</p>
+    </header>
+
+    <main>
+      <section>
+        <form>
+          <label>Search by:</label>
+          <select>
+            <option>Title</option>
+            <option>Author</option>
+            <option>ISBN</option>
+          </select>
+
+          <input type="text" id="search-input" placeholder="Search..." required />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+      
+      <section>
+         <!-- Book cards will be injected here -->
+      </section>
+    </main>
+
+    <footer>
+      <p class="text-sm">&copy;2025 Sothyra Chan. All rights reserved.</p>
+    </footer>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
