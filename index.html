@@ -15,13 +15,13 @@
     </header>
 
     <main>
-      <section>
+      <section aria-label="Search Section">
         <form id="search-form">
-          <label>Search by:</label>
-          <select>
-            <option id="option-title">Title</option>
-            <option id="option-author">Author</option>
-            <option id="option-isbn">ISBN</option>
+          <label for="search-type">Search by:</label>
+          <select id="search-type">
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="isbn">ISBN</option>
           </select>
 
           <input type="text" id="search-input" placeholder="Search..." required />
