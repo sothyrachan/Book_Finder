@@ -8,20 +8,34 @@ const searchType = document.getElementById("search-type") as HTMLSelectElement;
 const searchBtn = document.getElementById("search-btn") as HTMLButtonElement;
 const bookContainer = document.getElementById("book-result") as HTMLDivElement;
 
-// type BookType = {
-//     title: string;
-//     authors: string;
-//     description: string;
-//     imageLinks: string;
-// }
+const displayBookResults = (books: any[]) => {
+    bookContainer.innerHTML = "";
 
-const displayBookResults = (books: any[]): void => {
     if (!books || books.length === 0) {
-        bookContainer.textContent = "";
-    } 
+        bookContainer.innerHTML = `<p>No book found!</p>`;
+    }
+
+    bookContainer.innerHTML = books.map((bookDetails) => {
+        const { volumeInfo } = bookDetails
+        const {
+            title,
+            authors,
+            description,
+            imageLinks,
+            previewLink
+        } = volumeInfo;
+
+        return `
+            <img src="${imageLinks?.thumbnail ?? "default.jpg"}">
+            <p><b>Tittle: </b>${title ?? "N/A"}</p>
+            <p><b>Author: </b>${authors.join(", ") ?? "N/A"}</p>
+            <a href="${previewLink}" target="_blank">Preview</a>
+            <p><b>Description: </b>${description ?? "No description"}</p>
+        `
+    }).join(" ");
 }
 
-const searchBookTittle = async() => {
+const searchBookTitle = async () => {
     const searchInputValue = searchInput.value.trim().toLowerCase();
     const typeOfSearch = searchType.value;
 
@@ -41,7 +55,20 @@ const searchBookTittle = async() => {
     } catch (err) {
         console.log("Error: ", err)
         if (bookContainer) {
-            bookContainer.textContent = `<p>No book found!</p>`;
+            bookContainer.innerHTML = `<p>Cannot fetch book!</p>`;
         }
     }
 }
+
+searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    searchBookTitle();
+});
+
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        searchBookTitle();
+    }
+});
+
+searchBtn.addEventListener("click", searchBookTitle);
