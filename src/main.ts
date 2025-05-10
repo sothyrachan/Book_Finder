@@ -26,11 +26,13 @@ const displayBookResults = (books: any[]) => {
         } = volumeInfo;
 
         return `
-            <img src="${imageLinks?.thumbnail ?? "default.jpg"}">
-            <p><b>Tittle: </b>${title ?? "N/A"}</p>
-            <p><b>Author: </b>${authors.join(", ") ?? "N/A"}</p>
-            <a href="${previewLink}" target="_blank">Preview</a>
-            <p><b>Description: </b>${description ?? "No description"}</p>
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col h-full">
+                <img src="${imageLinks?.thumbnail ?? "default.jpg"}" alt="${title}" class="w-full h-48 object-cover rounded mb-4">
+                <p class="text-lg font-semibold mb-1"><b>Tittle: </b>${title ?? "N/A"}</p>
+                <p class="text-sm text-gray-600 mb-2"><b>Author: </b>${authors.join(", ") ?? "N/A"}</p>
+                <p class="text-sm text-gray-700 mb-3 line-clamp-4"><b>Description: </b>${description ?? "No description"}</p>
+                <a href="${previewLink}" target="_blank" class="mt-auto text-blue-600 hover:underline">Preview</a>
+            </div>
         `
     }).join(" ");
 }

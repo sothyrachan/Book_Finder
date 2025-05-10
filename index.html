@@ -1,44 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-100">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Finder</title>
     <link href="./output.css" rel="stylesheet" />
   </head>
-  <body>
-    <header>
-      <h1>
-        Book Finder
-      </h1>
-      <p>Search your favourite books by title, author, or ISBN</p>
+  <body class="h-full text-gray-800 font-sans">
+    <header class="bg-white shadow-md p-6 text-center">
+      <h1 class="text-3xl font-bold text-blue-700 mb-2">Book Finder</h1>
+      <p class="text-sm text-gray-600">
+        Search your favourite books by title, author, or ISBN
+      </p>
     </header>
 
-    <main>
-      <section aria-label="Search Section">
-        <form id="search-form">
-          <label for="search-type">Search by:</label>
-          <select id="search-type">
+    <main class="max-w-5xl mx-auto px-4 py-8">
+      <section aria-label="Search Section" class="mb-8">
+        <form id="search-form" class="flex flex-col md:flex-row items-center gap-4">
+          <label for="search-type" class="font-medium">Search by:</label>
+          <select id="search-type" class="px-3 py-2 border rounded-md w-full md:w-auto">
             <option value="title">Title</option>
             <option value="author">Author</option>
             <option value="isbn">ISBN</option>
           </select>
 
-          <input type="text" id="search-input" placeholder="Search..." required />
-          <button type="submit" id="search-btn">Search</button>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search..."
+            required
+            class="flex-1 px-3 py-2 border rounded-md w-full"
+          />
+          <button
+            type="submit"
+            id="search-btn"
+            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          >
+            Search
+          </button>
         </form>
       </section>
-      
+
       <section>
-          <div id="book-result">
-            <!-- Book cards will be here -->
-          </div>
+        <div
+          id="book-result"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Book cards will be dynamically inserted here -->
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p class="text-sm">&copy;2025 Sothyra Chan. All rights reserved.</p>
+    <footer class="text-center text-sm text-gray-500 py-4">
+      &copy;2025 Sothyra Chan. All rights reserved.
     </footer>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
